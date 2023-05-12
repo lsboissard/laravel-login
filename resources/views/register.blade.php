@@ -19,11 +19,13 @@
                 <form>
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="name" placeholder="Digite seu nome completo." aria-describedby="email">
+                        <input type="text" class="form-control" id="name"
+                            placeholder="Digite seu nome completo." aria-describedby="email">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail." aria-describedby="email">
+                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail."
+                            aria-describedby="email">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Senha</label>
