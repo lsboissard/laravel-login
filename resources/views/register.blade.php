@@ -17,6 +17,7 @@
             </div>
             <div class="card-body">
                 <form>
+                    @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Nome Completo</label>
                         <input type="text" class="form-control" id="name"

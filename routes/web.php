@@ -10,9 +10,13 @@ Route::get('/register', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/login', [AuthController::class, 'index'])->name('auth.index');
-Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::controller(AuthController::class)->group(function(){
+    Route::get('/login', 'index')->name('auth.index');
+    Route::get('/logout', 'logout')->name('auth.logout');
+    Route::post('/login', 'login')->name('auth.login');
+});
+
+
 
 // Route::get('/register', [AuthController::class, 'index'])->name('auth.index');
 // Route::post('/register', [AuthController::class, 'login'])->name('auth.login');

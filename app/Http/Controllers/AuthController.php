@@ -14,16 +14,26 @@ class AuthController extends Controller {
     }
 
     public function login(Request $request): RedirectResponse {
-        $credentials = $request->validate([
+
+        $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'Por favor, digite seu e-mail.',
+            'email.email' => 'Por favor, digite um e-mail válido.',
+            'password.required' => 'Por favor, digite sua senha.'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $credentials = $request->only('email', 'password');
+        $authenticated = Auth::attempt($credentials);
+
+        if ($authenticated) {
             $request->session()->regenerate();
             Session::put('user', Auth::user()->name);
             return redirect('/');
         }
+
+        return redirect()->route('auth.login')->withErrors(['error' => 'E-mail e/ou senha inválido(s).']);
     }
 
     public function logout() {
