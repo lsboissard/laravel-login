@@ -6,7 +6,10 @@
     <div class="container">
         <div class="d-flex align-items-center justify-content-center vh-100">
             <div class="">
-                <span class="fs-1 fw-bold d-block">Olá, {{ Session::get('user') ?? 'Visitante' }}!</span>
+                <span class="fs-1 fw-bold">Olá, {{ Session::get('user') ?? 'Visitante' }}!</span>
+                @auth
+                    <span style="font-size: 48px">&#9996</span>
+                @endauth
                 {{-- @if (Auth::check())
                 <a href="/logout" class="d-block text-center">Logout</a>
                 @else

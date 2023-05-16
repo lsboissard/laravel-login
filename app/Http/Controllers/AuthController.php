@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller {
 
     public function index() {
-        return view('login');
+        return view('auth/login');
     }
 
     public function login(Request $request): RedirectResponse {
@@ -43,6 +43,10 @@ class AuthController extends Controller {
     }
 
     public function register() {
-        return view('register');
+        return view('auth/register');
+    }
+
+    public function create(Request $request):RedirectResponse{
+        return redirect()->route('home');
     }
 }
