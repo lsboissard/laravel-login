@@ -11,7 +11,7 @@ Route::controller(AuthController::class)->group(function(){
     Route::get('/register', 'register')->name('auth.register');
     Route::get('/logout', 'logout')->name('auth.logout');
     Route::post('/login', 'login')->name('auth.login');
-    Route::post('/register', 'create')->name('auth.create');
+    Route::post('/register', 'store')->name('auth.store');
 });
 
 // Route::get('/register', [AuthController::class, 'index'])->name('auth.index');

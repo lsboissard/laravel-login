@@ -23,20 +23,16 @@
                     <form action="" method="post">
                         @csrf
                         <div class="mb-3">
-                            <div class="d-flex justify-content-between">
-                                <label class="form-label" for="email">E-mail</label>
-                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                            </div>
+                            <label class="form-label" for="email">E-mail</label>
                             <input class="form-control" name="email" type="email" aria-describedby="email"
                                 placeholder="Digite seu e-mail." />
+                            <small class="text-danger">{{ $errors->first('email') }}</small>
                         </div>
 
                         <div class="mb-3">
-                            <div class="d-flex justify-content-between">
-                                <label class="form-label" for="password">Senha</label>
-                                <span class="text-danger">{{ $errors->first('password') }}</span>
-                            </div>
+                            <label class="form-label" for="password">Senha</label>
                             <input class="form-control" name="password" type="password" placeholder="Digite sua senha." />
+                            <small class="text-danger">{{ $errors->first('password') }}</small>
                         </div>
                         {{-- <div class="mb-3 form-check">
                         <input
@@ -58,7 +54,7 @@
             </div>
             @error('error')
                 <div class="d-block mt-3">
-                    <span class="d-block text-danger text-center">{{ $message }}</span>
+                    <small class="d-block text-danger text-center">{{ $message }}</small>
                 </div>
             @enderror
             <div class="d-block mt-3">

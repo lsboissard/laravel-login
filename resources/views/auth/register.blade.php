@@ -3,46 +3,53 @@
 @section('title', 'Cadastrar')
 
 @section('content')
-<div class="container d-flex align-items-center justify-content-center vh-100">
-    <div class="">
-        <div class="card" style="width: 32rem">
-            <div class="card-header d-flex justify-content-between">
-                <div>
-                    <span class="fw-semibold">Acesso Restrito</span>
+    <div class="d-flex align-items-center justify-content-center vh-100 container">
+        <div class="">
+            <div class="card" style="width: 32rem">
+                <div class="card-header d-flex justify-content-between">
+                    <div>
+                        <span class="fw-semibold">Acesso Restrito</span>
+                    </div>
+                    <div>
+                        <a href="/login">Entrar</a>
+                        <span>Cadastrar</span>
+                    </div>
                 </div>
-                <div>
-                    <a href="/login">Entrar</a>
-                    <span>Cadastrar</span>
+                <div class="card-body">
+                    <form method="post" action="">
+                        @csrf
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Nome Completo</label>
+                            <input class="form-control" id="name" name="name" type="text"
+                                value="{{ old('name') }}" aria-describedby="name" placeholder="Digite seu nome completo.">
+                            <small class="text-danger">{{ $errors->first('name') }}</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="email">E-mail</label>
+                            <input class="form-control" id="email" name="email" type="email"
+                                value="{{ old('email') }}" aria-describedby="email" placeholder="Digite seu e-mail.">
+                            <small class="text-danger">{{ $errors->first('email') }}</small>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password">Senha</label>
+                            <input class="form-control" id="password" name="password" type="password"
+                                placeholder="Digite sua senha.">
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="password_confirmation">Confirmar Senha</label>
+                            <input class="form-control" id="password_confirmation" name="password_confirmation"
+                                type="password" placeholder="Confirme sua senha.">
+                            <small class="text-danger">{{ $errors->first('password') }}</small>
+
+                        </div>
+                        <button class="btn btn-primary w-100" type="submit">Enviar</button>
+                    </form>
                 </div>
             </div>
-            <div class="card-body">
-                <form>
-                    @csrf
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nome Completo</label>
-                        <input type="text" class="form-control" id="name"
-                            placeholder="Digite seu nome completo." aria-describedby="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite seu e-mail."
-                            aria-describedby="email">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Senha</label>
-                        <input type="password" class="form-control" placeholder="Digite sua senha." id="password">
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Confirmar Senha</label>
-                        <input type="password" class="form-control" placeholder="Confirme sua senha." id="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Enviar</button>
-                </form>
+            <div class="d-block mt-3">
+                <a class="d-block text-center" href="/">Voltar</a>
             </div>
-        </div>
-        <div class="d-block mt-3">
-            <a href="/" class="d-block text-center">Voltar</a>
         </div>
     </div>
-</div>
 @endsection
