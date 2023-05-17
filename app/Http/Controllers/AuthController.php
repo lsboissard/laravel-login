@@ -51,28 +51,33 @@ class AuthController extends Controller {
 
     public function store(Request $request):RedirectResponse{
 
-        $validated = $request->validate([
+        $request->validate([
             'name'=> 'required|max:255',
             'email' => 'required|email|unique:users,email|max:255',
             'password'=> 'required|confirmed|min:6',
         ],[
             'name.required' => 'Por favor, preencha seu nome completo.',
+            'name.max' => 'Nome muito longo, gentileza abreviar.',
             'email.required' => 'Por favor, preencha seu e-mail.',
+            'email.unique' => 'E-mail já cadastrado.',
             'email.email' => 'Por favor, preencha um e-mail válido.',
+            'email.max' => 'E-mail muito longo. Por favor, preencha um e-mail válido.',
             'password.min' => 'Por favor, preencha uma senha com no mínimo 6 caracteres.',
             'password.required' => 'Por favor, preencha sua senha.',
             'password.confirmed' => 'Por favor, confirme a sua senha.',
         ]);
 
-
         $data = $request->all();
 
-        User::create([
+        $user = User::create([
             'name'=> $data['name'],
             'email'=> $data['email'],
             'password'=> Hash::make($data['password']),
         ]);
-       
+
+        Auth::loginUsingId($user->id);
+        Session::put('user', Auth::user()->name);
+
         return redirect()->route('home');
     }
 }
